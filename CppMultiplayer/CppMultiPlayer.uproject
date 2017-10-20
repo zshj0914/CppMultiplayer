@@ -1,0 +1,16 @@
+{
+	"FileVersion": 3,
+	"EngineAssociation": "{01BE4888-4320-1B6D-66B8-509F42BC28EA}",
+	"Category": "",
+	"Description": "",
+	"Modules": [
+		{
+			"Name": "CppMultiPlayer",
+			"Type": "Runtime",
+			"LoadingPhase": "Default",
+			"AdditionalDependencies": [
+				"Engine"
+			]
+		}
+	]
+}
