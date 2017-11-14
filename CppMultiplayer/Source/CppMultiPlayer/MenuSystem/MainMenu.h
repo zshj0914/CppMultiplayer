@@ -17,11 +17,18 @@ class CPPMULTIPLAYER_API UMainMenu : public UMenuWidget
 
 public:
 
+	UMainMenu(const FObjectInitializer & FObjectInitializer);
+
+	void SetServerList(TArray<FString> ServerNames);
+
+	void SelectIndex(uint32 Index);
 
 protected:
 	virtual bool Initialize();
 
 private:
+
+	TSubclassOf<class UUserWidget> ServerRowClass;
 
 	UPROPERTY(meta = (BindWidget))
 	class UButton* HostButton;
@@ -48,7 +55,7 @@ private:
 	class UWidget* MainMenu;
 
 	UPROPERTY(meta = (BindWidget))
-	class UEditableTextBox* IPAddressField;
+	class UPanelWidget* ServerList;
 
 	UFUNCTION()
 	void HostServer();
@@ -65,5 +72,6 @@ private:
 	UFUNCTION()
 	void QuitPressed();
 
+	TOptional<uint32> SelectedIndex;
 
 };
