@@ -124,10 +124,6 @@ void UMainMenu::OpenHostMenu()
 
 	MenuSwitcher->SetActiveWidget(HostMenu);
 
-	if (MenuInterface != nullptr)
-	{
-		MenuInterface->RefreshServerList();
-	}
 }
 
 void UMainMenu::OpenJoinMenu()
