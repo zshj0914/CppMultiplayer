@@ -7,6 +7,8 @@
 #include "OnlineSubsystem.h"
 #include "OnlineSessionInterface.h"
 
+#include "Networking.h"
+#include "ReceiveThread.h"
 #include "MenuSystem/MenuInterface.h"
 #include "PuzzlePlatformsGameInstance.generated.h"
 
@@ -31,7 +33,7 @@ public:
 	void LoadInGameMenu();
 
 	UFUNCTION(Exec)
-	void Host(FString ServerName) override;
+	void HostServer(FString ServerName) override;
 
 	UFUNCTION(Exec)
 	void Join(uint32 Index) override;
@@ -60,4 +62,28 @@ private:
 	FString DesiredServerName;
 
 	void CreateSession();
+
+public:
+	//创建Socket并连接到服务器（主线程）
+	UFUNCTION(BlueprintCallable, Category = "MySocket")
+		bool SocketCreate(FString IPStr, int32 port);
+
+	//发消息(主线程)
+	UFUNCTION(BlueprintCallable, Category = "MySocket")
+		bool SocketSend(FString message);
+
+	//收消息(子线程)
+	UFUNCTION(BlueprintCallable, Category = "MySocket")
+		bool SocketReceive();
+
+	UFUNCTION(BlueprintCallable, Category = "MySocket")
+		bool ThreadEnd();
+
+	FString StringFromBinaryArray(TArray<uint8> BinaryArray);
+
+public:
+	FSocket *Host;
+	FIPv4Address ip;
+	FRunnableThread* m_RecvThread;
+
 };

@@ -97,7 +97,7 @@ void UMainMenu::HostServer()
 	if (MenuInterface != nullptr)
 	{
 		FString ServerName = ServerHostName->Text.ToString();
-		MenuInterface->Host(ServerName);
+		MenuInterface->HostServer(ServerName);
 	
 	}
 
